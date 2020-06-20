@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useRef } from "react";
-import "./App.css";
+import "../styling/grid.scss";
 import produce from "immer";
 
 const numRows = 50;
