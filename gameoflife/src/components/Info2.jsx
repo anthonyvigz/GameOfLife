@@ -1,12 +1,12 @@
 import React from "react";
-import "../styling/enter.scss";
+import "../styling/info.scss";
 import { motion } from "framer-motion";
 
-function Enter(props) {
+function Info2(props) {
   const goToInfo = (event) => {
     event.preventDefault();
 
-    props.history.push("whatisit");
+    props.history.push("turing");
   };
 
   // variants for parent animation
@@ -31,16 +31,15 @@ function Enter(props) {
     visible: { opacity: 1, x: 0 },
     hidden: { opacity: 0, x: -55 },
   };
-
   return (
     <motion.div
       variants={parentList}
       initial="hidden"
       animate="visible"
       exit="hidden"
-      className="enterScreen"
+      className="infoBlock"
     >
-      <motion.h1
+      <motion.h2
         variants={item}
         transition={{
           ease: "easeIn",
@@ -49,22 +48,24 @@ function Enter(props) {
           stiffness: 100,
         }}
       >
-        Conway's Game of Life
-      </motion.h1>
-      <motion.h2
+        Talk About Turing Completeness
+      </motion.h2>
+      <motion.p
         variants={item}
         transition={{
           ease: "easeIn",
-          duration: 2.5,
+          duration: 2,
           type: "spring",
           stiffness: 100,
         }}
       >
-        {" "}
-        Interpretation by Anthony Vigliotta
-      </motion.h2>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Luctus accumsan
+        tortor posuere ac. Lectus vestibulum mattis ullamcorper velit sed
+        ullamcorper morbi. Eu scelerisque felis imperdiet proin fermentum leo.
+      </motion.p>
       <motion.button
-        className="whatIsIt"
+        className="turingComplete"
         variants={item}
         transition={{
           ease: "easeIn",
@@ -74,7 +75,7 @@ function Enter(props) {
         }}
         onClick={goToInfo}
       >
-        What Is It?
+        Turing Completeness
         <i className="fa fa-arrow-right"></i>
       </motion.button>
       <motion.button
@@ -93,4 +94,4 @@ function Enter(props) {
     </motion.div>
   );
 }
-export default Enter;
+export default Info2;

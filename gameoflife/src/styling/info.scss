@@ -1,0 +1,62 @@
+.infoBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  margin: 15% auto;
+  h2 {
+    color: white;
+  }
+
+  p {
+    color: white;
+  }
+
+  .turingComplete {
+    font-family: "Heebo", sans-serif;
+    font-size: 1em;
+    padding: 8px 23px;
+    letter-spacing: 1.5px;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    outline: none;
+    cursor: pointer;
+    width: 280px;
+
+    i {
+      margin-left: 8px;
+      font-size: 1.3em;
+      transition: 0.5s;
+    }
+  }
+  .turingComplete:hover {
+    i {
+      transition: 0.5s;
+      margin-left: 18px;
+    }
+  }
+
+  .goToGame {
+    font-family: "Heebo", sans-serif;
+    background: none;
+    color: white;
+    outline: none;
+    border: none;
+    margin-top: 20px;
+    cursor: pointer;
+
+    i {
+      transition: 0.5s;
+      margin-left: 8px;
+    }
+  }
+
+  .goToGame:hover {
+    i {
+      transition: 0.5s;
+      margin-left: 16px;
+    }
+  }
+}
