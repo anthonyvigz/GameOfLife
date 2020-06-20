@@ -10,12 +10,63 @@
     color: white;
     margin: 0;
     padding: 0;
-    letter-spacing: 1.5px;
+    font-size: 3em;
+    letter-spacing: 2.5px;
+    margin-top: -200px;
   }
   h2 {
-    color: white;
+    color: rgba(255, 255, 255, 0.856);
     margin: 0;
     padding: 0;
     letter-spacing: 1.5px;
+    font-size: 1em;
+    letter-spacing: 3px;
+  }
+
+  .whatIsIt {
+    font-family: "Heebo", sans-serif;
+    font-size: 1em;
+    padding: 8px 23px;
+    letter-spacing: 1.5px;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    outline: none;
+    cursor: pointer;
+    width: 180px;
+
+    i {
+      margin-left: 8px;
+      font-size: 1.3em;
+      transition: 0.5s;
+    }
+  }
+  .whatIsIt:hover {
+    i {
+      transition: 0.5s;
+      margin-left: 18px;
+    }
+  }
+
+  .goToGame {
+    font-family: "Heebo", sans-serif;
+    background: none;
+    color: white;
+    outline: none;
+    border: none;
+    margin-top: 20px;
+    cursor: pointer;
+
+    i {
+      transition: 0.5s;
+      margin-left: 8px;
+    }
+  }
+
+  .goToGame:hover {
+    i {
+      transition: 0.5s;
+      margin-left: 16px;
+    }
   }
 }
