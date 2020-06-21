@@ -9,6 +9,12 @@ function Enter(props) {
     props.history.push("whatisit");
   };
 
+  const goToGame = (event) => {
+    event.preventDefault();
+
+    props.history.push("gamescreen");
+  };
+
   // variants for parent animation
   const parentList = {
     visible: {
@@ -86,6 +92,7 @@ function Enter(props) {
           type: "spring",
           stiffness: 100,
         }}
+        onClick={goToGame}
       >
         Go To Game
         <i className="fa fa-arrow-right"></i>

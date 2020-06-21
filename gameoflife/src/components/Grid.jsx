@@ -2,8 +2,8 @@ import React, { useState, useCallback, useRef } from "react";
 import "../styling/grid.scss";
 import produce from "immer";
 
-const numRows = 50;
-const numCols = 50;
+const numRows = 30;
+const numCols = 30;
 
 const operations = [
   [0, 1],
@@ -63,7 +63,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div className="gridHolder">
       <button
         onClick={() => {
           setRunning(!running);
@@ -92,16 +92,16 @@ function App() {
                 setGrid(newGrid);
               }}
               style={{
-                width: 20,
-                height: 20,
-                backgroundColor: grid[i][k] ? "pink" : undefined,
-                border: "solid 1px black",
+                width: 15,
+                height: 15,
+                backgroundColor: grid[i][k] ? "white" : undefined,
+                margin: "3px",
               }}
             />
           ))
         )}
       </div>
-    </>
+    </div>
   );
 }
 

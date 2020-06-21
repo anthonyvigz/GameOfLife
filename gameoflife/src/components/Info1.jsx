@@ -9,6 +9,12 @@ function Info1(props) {
     props.history.push("turing");
   };
 
+  const goToGame = (event) => {
+    event.preventDefault();
+
+    props.history.push("gamescreen");
+  };
+
   // variants for parent animation
   const parentList = {
     visible: {
@@ -80,6 +86,7 @@ function Info1(props) {
       </motion.button>
       <motion.button
         className="goToGame"
+        onClick={goToGame}
         variants={item}
         transition={{
           ease: "easeIn",

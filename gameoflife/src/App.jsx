@@ -14,7 +14,7 @@ function App() {
           <Route exact path="/" component={Enter} />
           <Route exact path="/whatisit" component={Info1} />
           <Route exact path="/turing" component={Info2} />
-          <Route exact path="/dashboard" component={GameScreen} />
+          <Route exact path="/gamescreen" component={GameScreen} />
         </Switch>
       </AnimatePresence>
     </div>
