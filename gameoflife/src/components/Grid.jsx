@@ -1,9 +1,6 @@
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
 import "../styling/grid.scss";
 import produce from "immer";
-
-const numRows = 30;
-const numCols = 30;
 
 const operations = [
   [0, 1],
@@ -17,6 +14,10 @@ const operations = [
 ];
 
 function App() {
+  // state for setting the rows and columns
+  const [numRows, setRows] = useState(30);
+  const [numCols, setCols] = useState(30);
+
   const [grid, setGrid] = useState(() => {
     const rows = [];
     for (let i = 0; i < numRows; i++) {
@@ -29,6 +30,25 @@ function App() {
 
   const runningRef = useRef();
   runningRef.current = running;
+
+  // this is the change handler for input values for making grid
+  const numHandler = (event) => {
+    event.preventDefault();
+
+    if (event.target.name === "numRows") {
+      setRows(parseInt(event.target.value));
+    } else if (event.target.name === "numCols") {
+      setCols(parseInt(event.target.value));
+    }
+  };
+
+  // this sets the new grid
+  const setValues = (event) => {
+    event.preventDefault();
+
+    setRows(event.target.value);
+    setCols(event.target.value);
+  };
 
   const runSimulation = useCallback(() => {
     if (!runningRef.current) {
@@ -63,43 +83,53 @@ function App() {
   }, []);
 
   return (
-    <div className="gridHolder">
-      <button
-        onClick={() => {
-          setRunning(!running);
-          if (!running) {
-            runningRef.current = true;
-            runSimulation();
-          }
-        }}
-      >
-        {running ? "stop" : "start"}
-      </button>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: `repeat(${numCols}, 20px`,
-        }}
-      >
-        {grid.map((rows, i) =>
-          rows.map((col, k) => (
-            <div
-              key={`${i}-${k}`}
-              onClick={() => {
-                const newGrid = produce(grid, (gridCopy) => {
-                  gridCopy[i][k] = grid[i][k] ? 0 : 1;
-                });
-                setGrid(newGrid);
-              }}
-              style={{
-                width: 15,
-                height: 15,
-                backgroundColor: grid[i][k] ? "white" : undefined,
-                margin: "3px",
-              }}
-            />
-          ))
-        )}
+    <div className="gameSettings">
+      <div className="gridHolder">
+        <div
+          className="grid"
+          style={{
+            display: "grid",
+            gridTemplateColumns: `repeat(${numCols}, 17px`,
+          }}
+        >
+          {grid.map((rows, i) =>
+            rows.map((col, k) => (
+              <div
+                key={`${i}-${k}`}
+                onClick={() => {
+                  const newGrid = produce(grid, (gridCopy) => {
+                    gridCopy[i][k] = grid[i][k] ? 0 : 1;
+                  });
+                  setGrid(newGrid);
+                }}
+                className="block"
+                style={{
+                  width: 15,
+                  height: 15,
+                  backgroundColor: grid[i][k] ? "white" : undefined,
+                }}
+              />
+            ))
+          )}
+        </div>
+      </div>
+      <div className="buttons">
+        <button
+          onClick={() => {
+            setRunning(!running);
+            if (!running) {
+              runningRef.current = true;
+              runSimulation();
+            }
+          }}
+        >
+          {running ? "stop" : "start"}
+        </button>
+        <input name="numRows" onChange={numHandler} value={numRows} />
+        <input name="numCols" onChange={numHandler} value={numCols} />
+        <button type="submit" onSubmit={setValues}>
+          New Grid
+        </button>
       </div>
     </div>
   );

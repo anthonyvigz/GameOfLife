@@ -1,9 +1,26 @@
 .gridHolder {
-display: flex;
-flex-direction: column;
-border: solid red 2px;
+  display: flex;
+  flex-direction: column;
+  border: solid red 2px;
+  justify-content: center;
+  align-items: center;
 
-button {
-  width: 90px;
-}
+  button {
+    width: 90px;
+  }
+
+  .grid {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+
+    .block {
+      margin: 0;
+      padding: 0;
+      border: solid white 1px;
+      cursor: pointer;
+    }
+  }
 }
