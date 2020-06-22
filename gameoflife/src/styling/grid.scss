@@ -1,26 +1,58 @@
-.gridHolder {
-  display: flex;
-  flex-direction: column;
-  border: solid red 2px;
-  justify-content: center;
-  align-items: center;
-
-  button {
-    width: 90px;
-  }
-
-  .grid {
+.gameSettings {
+  .gridHolder {
     display: flex;
-    margin: 0;
-    padding: 0;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    margin-top: 50px;
 
-    .block {
+    button {
+      width: 90px;
+    }
+
+    .grid {
+      display: flex;
       margin: 0;
       padding: 0;
-      border: solid white 1px;
+      align-items: center;
+      justify-content: center;
+
+      .block {
+        margin: 0;
+        padding: 0;
+        border: solid white 1px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  h2 {
+    color: white;
+    text-align: center;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 25px;
+
+    button {
+      background: white;
+      outline: none;
+      border: none;
+      font-family: "Heebo", sans-serif;
+      border-radius: 3px;
+      transition: 0.5s;
+      border: solid 1px white;
       cursor: pointer;
+      opacity: 0.8;
+    }
+
+    button:hover {
+      opacity: 1;
+      transition: 0.5s;
     }
   }
 }

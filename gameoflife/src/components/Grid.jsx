@@ -17,6 +17,8 @@ function App() {
   // state for setting the rows and columns
   const [numCols, setCols] = useState(24);
   const [numRows, setRows] = useState(24);
+  let [counter, setCounter] = useState(0);
+  const [speed, setSpeed] = useState(500);
 
   const [grid, setGrid] = useState(() => {
     const rows = [];
@@ -31,11 +33,14 @@ function App() {
   const runningRef = useRef();
   runningRef.current = running;
 
-  // this is the change handler for input values for making grid
-  const numHandler = (event) => {
+  const runningSpeed = useRef();
+  runningSpeed.current = speed;
+
+  // this handles the speed change
+  const speedChange = (event) => {
     event.preventDefault();
 
-    setCols(parseInt(event.target.value));
+    setSpeed(parseInt(event.target.value));
   };
 
   // this sets the new grid
@@ -49,6 +54,7 @@ function App() {
         }
       });
     });
+    setCounter(0);
   };
 
   const runSimulation = useCallback(() => {
@@ -78,9 +84,10 @@ function App() {
         }
       });
     });
+    setCounter(counter++);
 
     // simulate
-    setTimeout(runSimulation, 100);
+    setTimeout(runSimulation, runningSpeed.current);
   }, []);
 
   return (
@@ -114,6 +121,7 @@ function App() {
           )}
         </div>
       </div>
+      <h2>{counter}</h2>
       <div className="buttons">
         <button
           onClick={() => {
@@ -123,10 +131,25 @@ function App() {
               runSimulation();
             }
           }}
+          style={{
+            fontSize: "1.3em",
+            padding: "5px 15px",
+            marginBottom: "15px",
+            color: "white",
+            backgroundColor: running ? "#f52a3b" : "#7aeb34",
+          }}
         >
-          {running ? "stop" : "start"}
+          {running ? "STOP" : "START"}
         </button>
-        <button onClick={resetGrid}>New Grid</button>
+        <button onClick={resetGrid}>NEW</button>
+        <select onChange={speedChange} id="speed">
+          <option value={2000}>2 Seconds</option>
+          <option value={1000}>1 Second</option>
+          <option value={500} selected>
+            1/2 Second
+          </option>
+          <option value={100}>1/10 Second</option>
+        </select>
       </div>
     </div>
   );
