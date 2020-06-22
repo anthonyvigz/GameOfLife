@@ -101,6 +101,21 @@ function App() {
     });
   };
 
+  // set speed
+  const upSpeed = (event) => {
+    event.preventDefault();
+
+    if (speed === 500) {
+      setSpeed(100);
+    } else if (speed === 100) {
+      setSpeed(2000);
+    } else if (speed === 2000) {
+      setSpeed(1000);
+    } else {
+      setSpeed(500);
+    }
+  };
+
   const runSimulation = useCallback(() => {
     if (!runningRef.current) {
       return;
@@ -144,69 +159,80 @@ function App() {
   }, []);
 
   return (
-    <div className="gameSettings">
-      <div className="gridHolder">
-        <div
-          className="grid"
-          style={{
-            display: "grid",
-            gridTemplateColumns: `repeat(${numCols}, 17px`,
-          }}
-        >
-          {grid.map((rows, i) =>
-            rows.map((col, k) => (
-              <div
-                key={`${i}-${k}`}
-                onClick={() => {
-                  const newGrid = produce(grid, (gridCopy) => {
-                    gridCopy[i][k] = grid[i][k] ? 0 : 1;
-                  });
-                  setGrid(newGrid);
-                }}
-                className="block"
-                style={{
-                  width: 15,
-                  height: 15,
-                  backgroundColor: grid[i][k] ? "white" : undefined,
-                }}
-              />
-            ))
-          )}
-        </div>
-      </div>
-      <h2>{counter}</h2>
-      <div className="buttons">
-        <button
-          onClick={() => {
-            setRunning(!running);
-            if (!running) {
-              runningRef.current = true;
-              runSimulation();
-            }
-          }}
-          style={{
-            fontSize: "1.3em",
-            padding: "5px 15px",
-            marginBottom: "15px",
-            color: "white",
-            backgroundColor: running ? "#f52a3b" : "#7aeb34",
-          }}
-        >
-          {running ? "STOP" : "START"}
-        </button>
-        <button onClick={resetGrid}>NEW</button>
-        <select onChange={speedChange} id="speed">
-          <option value={2000}>2 Seconds</option>
-          <option value={1000}>1 Second</option>
-          <option value={500} selected>
-            1/2 Second
-          </option>
-          <option value={100}>1/10 Second</option>
-        </select>
+    <div className="wholeGame">
+      <div className="gameSettings">
         <div className="templates">
-          <button onClick={pulsarGrid}>PULSAR</button>
-          <button onClick={replicatorGrid}>REPLICATOR</button>
-          <button onClick={cloverGrid}>CLOVER</button>
+          <h3>Presets</h3>
+          <button onClick={pulsarGrid}>
+            PULSAR <i className="fas fa-angle-right"></i>
+          </button>
+          <button onClick={replicatorGrid}>
+            REPLICATOR <i className="fas fa-angle-right"></i>
+          </button>
+          <button onClick={cloverGrid}>
+            CLOVER <i className="fas fa-angle-right"></i>
+          </button>
+        </div>
+        <div className="gridHolder">
+          <div
+            className="grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: `repeat(${numCols}, 17px`,
+            }}
+          >
+            {grid.map((rows, i) =>
+              rows.map((col, k) => (
+                <div
+                  key={`${i}-${k}`}
+                  onClick={() => {
+                    const newGrid = produce(grid, (gridCopy) => {
+                      gridCopy[i][k] = grid[i][k] ? 0 : 1;
+                    });
+                    setGrid(newGrid);
+                  }}
+                  className="block"
+                  style={{
+                    width: 15,
+                    height: 15,
+                    backgroundColor: grid[i][k] ? "white" : "black",
+                  }}
+                />
+              ))
+            )}
+          </div>
+          <button className="speed" onClick={upSpeed}>
+            {speed === 2000 ? (
+              <i class="fas fa-tachometer-slowest"></i>
+            ) : speed === 1000 ? (
+              <i class="fas fa-tachometer-slow"></i>
+            ) : speed === 500 ? (
+              <i class="fas fa-tachometer-fast"></i>
+            ) : (
+              <i class="fas fa-tachometer-fastest"></i>
+            )}
+          </button>
+          <button
+            onClick={() => {
+              setRunning(!running);
+              if (!running) {
+                runningRef.current = true;
+                runSimulation();
+              }
+            }}
+            style={{
+              backgroundColor: running ? "#f52a3b" : "#7aeb34",
+            }}
+            className="startButton"
+          >
+            {running ? "STOP" : "START"}
+          </button>
+        </div>
+        <div className="rightSide">
+          <button className="newButton" onClick={resetGrid}>
+            <i class="fas fa-trash-alt"></i>
+          </button>
+          <h2>{counter}</h2>
         </div>
       </div>
     </div>

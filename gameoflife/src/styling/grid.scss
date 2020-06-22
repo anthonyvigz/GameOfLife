@@ -1,58 +1,165 @@
-.gameSettings {
-  .gridHolder {
+.wholeGame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .gameSettings {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
 
-    button {
-      width: 90px;
-    }
-
-    .grid {
-      display: flex;
+    .templates {
       margin: 0;
-      padding: 0;
+      display: flex;
+      flex-direction: column;
+      margin-top: 0 15px;
       align-items: center;
       justify-content: center;
+      margin-top: -100px;
 
-      .block {
+      h3 {
+        color: rgba(255, 255, 255, 0.829);
         margin: 0;
-        padding: 0;
-        border: solid white 1px;
+        margin-top: 20px;
+        margin-left: -21px;
+        margin-bottom: 25px;
+        letter-spacing: 2px;
+      }
+
+      button {
+        display: flex;
+        outline: none;
+        background: none;
+        color: white;
+        font-family: "Heebo", sans-serif;
+        border: none;
         cursor: pointer;
+        margin: 15px;
+        transition: 0.5s;
+        border-radius: 5px;
+        padding: 5px 10px;
+        width: 115px;
+        align-items: center;
+        text-align: center;
+
+        i {
+          font-size: 2em;
+          margin-left: 8px;
+          transition: 0.5s;
+        }
+      }
+
+      button:hover {
+        i {
+          margin-left: 15px;
+          transition: 0.5s;
+        }
       }
     }
-  }
+    .gridHolder {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 50px;
 
-  h2 {
-    color: white;
-    text-align: center;
-  }
+      button {
+        width: 90px;
+      }
 
-  .buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 25px;
+      .grid {
+        display: flex;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+        justify-content: center;
+        border: solid rgb(214, 138, 250) 5px;
+        border-radius: 3px;
 
-    button {
-      background: white;
-      outline: none;
-      border: none;
-      font-family: "Heebo", sans-serif;
-      border-radius: 3px;
-      transition: 0.5s;
-      border: solid 1px white;
-      cursor: pointer;
-      opacity: 0.8;
+        .block {
+          margin: 0;
+          padding: 0;
+          border: solid white 1px;
+          cursor: pointer;
+        }
+      }
+
+      .startButton {
+        outline: none;
+        border: none;
+        font-family: "Heebo", sans-serif;
+        border-radius: 3px;
+        transition: 0.5s;
+        border: solid 1px white;
+        cursor: pointer;
+        opacity: 0.8;
+        padding: 13px;
+        display: flex;
+        font-size: 1.4em;
+        color: white;
+        width: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      button:hover {
+        opacity: 1;
+        transition: 0.5s;
+      }
+
+      .speed {
+        border: none;
+        background: none;
+        outline: none;
+        cursor: pointer;
+        transition: 0.5s;
+        margin-top: 25px;
+        margin-bottom: -6px;
+
+        i {
+          color: white;
+          font-size: 3.5em;
+          transition: 0.5s;
+        }
+      }
+      .speed:hover {
+        i {
+          opacity: 0.8;
+          transition: 0.5s;
+        }
+      }
     }
-
-    button:hover {
-      opacity: 1;
+    .rightSide {
+      display: flex;
+      flex-direction: column;
+      margin-top: -150px;
       transition: 0.5s;
+      align-items: flex-start;
+      justify-content: flex-start;
+      height: 335px;
+
+      .newButton {
+        background: none;
+        outline: none;
+        border: none;
+        border-radius: 3px;
+        transition: 0.5s;
+        cursor: pointer;
+        color: white;
+        font-size: 2em;
+        margin-left: 5px;
+      }
+
+      .newButton:hover {
+        color: rgb(238, 212, 250);
+      }
+
+      h2 {
+        color: white;
+        text-align: center;
+      }
     }
   }
 }
