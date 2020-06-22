@@ -17,7 +17,7 @@ function App() {
   // state for setting the rows and columns
   const [numCols, setCols] = useState(24);
   const [numRows, setRows] = useState(24);
-  let [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(0);
   const [speed, setSpeed] = useState(500);
 
   const [grid, setGrid] = useState(() => {
@@ -35,6 +35,12 @@ function App() {
 
   const runningSpeed = useRef();
   runningSpeed.current = speed;
+
+  const runningGrid = useRef();
+  runningGrid.current = grid;
+
+  const runningCount = useRef();
+  runningCount.current = counter;
 
   // this handles the speed change
   const speedChange = (event) => {
@@ -61,6 +67,8 @@ function App() {
     if (!runningRef.current) {
       return;
     }
+    const firstGrid = runningGrid.current;
+    const count = runningCount.current;
 
     setGrid((g) => {
       return produce(g, (gridCopy) => {
@@ -84,7 +92,13 @@ function App() {
         }
       });
     });
-    setCounter(counter++);
+    if (firstGrid === runningGrid.current) {
+      setRunning(!running);
+    } else {
+      const newCount = count + 1;
+      console.log(newCount);
+      setCounter(newCount);
+    }
 
     // simulate
     setTimeout(runSimulation, runningSpeed.current);
