@@ -49,3 +49,19 @@ export function pulsarTemplate(gridCopy) {
   gridCopy[16][15] = 1;
   gridCopy[16][16] = 1;
 }
+
+// this sets the replicator template grid
+export function replicatorTemplate(gridCopy) {
+  gridCopy[7][12] = 1;
+  gridCopy[7][13] = 1;
+  gridCopy[7][14] = 1;
+  gridCopy[8][11] = 1;
+  gridCopy[8][14] = 1;
+  gridCopy[9][10] = 1;
+  gridCopy[9][14] = 1;
+  gridCopy[10][10] = 1;
+  gridCopy[10][13] = 1;
+  gridCopy[11][10] = 1;
+  gridCopy[11][11] = 1;
+  gridCopy[11][12] = 1;
+}

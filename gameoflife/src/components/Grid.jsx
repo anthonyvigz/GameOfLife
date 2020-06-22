@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import "../styling/grid.scss";
 import produce from "immer";
-import { pulsarTemplate } from "./Templates";
+import { pulsarTemplate, replicatorTemplate } from "./Templates";
 
 const operations = [
   [0, 1],
@@ -66,10 +66,22 @@ function App() {
 
   // this sets the pulsar template grid
   const pulsarGrid = () => {
+    resetGrid();
     setCounter(0);
     setGrid((g) => {
       return produce(g, (gridCopy) => {
         pulsarTemplate(gridCopy);
+      });
+    });
+  };
+
+  // this sets the pulsar template grid
+  const replicatorGrid = () => {
+    resetGrid();
+    setCounter(0);
+    setGrid((g) => {
+      return produce(g, (gridCopy) => {
+        replicatorTemplate(gridCopy);
       });
     });
   };
@@ -176,7 +188,11 @@ function App() {
           </option>
           <option value={100}>1/10 Second</option>
         </select>
-        <button onClick={pulsarGrid}>PULSAR TEMPLATE</button>
+        <div className="templates">
+          <button onClick={pulsarGrid}>PULSAR TEMPLATE</button>
+          <button onClick={replicatorGrid}>REPLICATOR TEMPLATE</button>
+          <button onClick={pulsarGrid}>PULSAR TEMPLATE</button>
+        </div>
       </div>
     </div>
   );
