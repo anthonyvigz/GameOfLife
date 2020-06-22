@@ -3,7 +3,7 @@ import Grid from "./Grid";
 import "../styling/grid.scss";
 import { motion } from "framer-motion";
 
-function GameScreen() {
+function GameScreen(props) {
   // variants for parent animation
   const parentList = {
     visible: {
@@ -35,7 +35,7 @@ function GameScreen() {
         stiffness: 100,
       }}
     >
-      <Grid />
+      <Grid props={props} />
     </motion.div>
   );
 }

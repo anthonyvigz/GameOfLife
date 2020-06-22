@@ -18,7 +18,7 @@ const operations = [
   [-1, 0],
 ];
 
-function App() {
+function App(props) {
   // state for setting the rows and columns
   const [numCols, setCols] = useState(24);
   const [numRows, setRows] = useState(24);
@@ -47,11 +47,11 @@ function App() {
   const runningCount = useRef();
   runningCount.current = counter;
 
-  // this handles the speed change
-  const speedChange = (event) => {
+  // function to exit to main menu
+  const exit = (event) => {
     event.preventDefault();
 
-    setSpeed(parseInt(event.target.value));
+    props.props.history.push("/");
   };
 
   // this sets the new grid
@@ -226,6 +226,9 @@ function App() {
             className="startButton"
           >
             {running ? "STOP" : "START"}
+          </button>
+          <button onClick={exit} className="exit">
+            <i className="fas fa-angle-left"></i>Exit
           </button>
         </div>
         <div className="rightSide">
