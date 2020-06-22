@@ -15,8 +15,8 @@ const operations = [
 
 function App() {
   // state for setting the rows and columns
-  const [numRows, setRows] = useState(30);
-  const [numCols, setCols] = useState(30);
+  const [numCols, setCols] = useState(24);
+  const [numRows, setRows] = useState(24);
 
   const [grid, setGrid] = useState(() => {
     const rows = [];
@@ -35,19 +35,20 @@ function App() {
   const numHandler = (event) => {
     event.preventDefault();
 
-    if (event.target.name === "numRows") {
-      setRows(parseInt(event.target.value));
-    } else if (event.target.name === "numCols") {
-      setCols(parseInt(event.target.value));
-    }
+    setCols(parseInt(event.target.value));
   };
 
   // this sets the new grid
-  const setValues = (event) => {
-    event.preventDefault();
-
-    setRows(event.target.value);
-    setCols(event.target.value);
+  const resetGrid = () => {
+    setGrid((g) => {
+      return produce(g, (gridCopy) => {
+        for (let i = 0; i < numRows; i++) {
+          for (let k = 0; k < numCols; k++) {
+            gridCopy[i][k] = 0;
+          }
+        }
+      });
+    });
   };
 
   const runSimulation = useCallback(() => {
@@ -125,11 +126,7 @@ function App() {
         >
           {running ? "stop" : "start"}
         </button>
-        <input name="numRows" onChange={numHandler} value={numRows} />
-        <input name="numCols" onChange={numHandler} value={numCols} />
-        <button type="submit" onSubmit={setValues}>
-          New Grid
-        </button>
+        <button onClick={resetGrid}>New Grid</button>
       </div>
     </div>
   );
