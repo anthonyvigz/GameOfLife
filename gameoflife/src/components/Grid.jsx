@@ -1,7 +1,11 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import "../styling/grid.scss";
 import produce from "immer";
-import { pulsarTemplate, replicatorTemplate } from "./Templates";
+import {
+  pulsarTemplate,
+  replicatorTemplate,
+  cloverTemplate,
+} from "./Templates";
 
 const operations = [
   [0, 1],
@@ -82,6 +86,17 @@ function App() {
     setGrid((g) => {
       return produce(g, (gridCopy) => {
         replicatorTemplate(gridCopy);
+      });
+    });
+  };
+
+  // this sets the clover template grid
+  const cloverGrid = () => {
+    resetGrid();
+    setCounter(0);
+    setGrid((g) => {
+      return produce(g, (gridCopy) => {
+        cloverTemplate(gridCopy);
       });
     });
   };
@@ -189,9 +204,9 @@ function App() {
           <option value={100}>1/10 Second</option>
         </select>
         <div className="templates">
-          <button onClick={pulsarGrid}>PULSAR TEMPLATE</button>
-          <button onClick={replicatorGrid}>REPLICATOR TEMPLATE</button>
-          <button onClick={pulsarGrid}>PULSAR TEMPLATE</button>
+          <button onClick={pulsarGrid}>PULSAR</button>
+          <button onClick={replicatorGrid}>REPLICATOR</button>
+          <button onClick={cloverGrid}>CLOVER</button>
         </div>
       </div>
     </div>
