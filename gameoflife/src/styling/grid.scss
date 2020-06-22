@@ -74,7 +74,7 @@
         padding: 0;
         align-items: center;
         justify-content: center;
-        border: solid rgb(214, 138, 250) 5px;
+        border: solid white 5px;
         border-radius: 3px;
 
         .block {
@@ -156,9 +156,27 @@
         color: rgb(238, 212, 250);
       }
 
-      h2 {
-        color: white;
-        text-align: center;
+      .counter {
+        width: 150px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 100px;
+        margin-left: 30px;
+
+        h2 {
+          color: rgb(41, 187, 255);
+          text-align: center;
+          margin: 0;
+        }
+
+        h4 {
+          margin: 0;
+          color: white;
+          letter-spacing: 1.5px;
+        }
       }
     }
   }

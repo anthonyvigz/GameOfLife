@@ -232,7 +232,12 @@ function App() {
           <button className="newButton" onClick={resetGrid}>
             <i class="fas fa-trash-alt"></i>
           </button>
-          <h2>{counter}</h2>
+          <div className="counter">
+            <h2 style={{ color: counter === 0 ? "white" : "lightblue" }}>
+              {counter}
+            </h2>
+            <h4>Generations</h4>
+          </div>
         </div>
       </div>
     </div>
