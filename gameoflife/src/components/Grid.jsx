@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import "../styling/grid.scss";
 import produce from "immer";
+import { pulsarTemplate } from "./Templates";
 
 const operations = [
   [0, 1],
@@ -63,6 +64,16 @@ function App() {
     setCounter(0);
   };
 
+  // this sets the pulsar template grid
+  const pulsarGrid = () => {
+    setCounter(0);
+    setGrid((g) => {
+      return produce(g, (gridCopy) => {
+        pulsarTemplate(gridCopy);
+      });
+    });
+  };
+
   const runSimulation = useCallback(() => {
     if (!runningRef.current) {
       return;
@@ -92,11 +103,12 @@ function App() {
         }
       });
     });
+
+    console.log(runningGrid.current);
     if (firstGrid === runningGrid.current) {
       setRunning(!running);
     } else {
       const newCount = count + 1;
-      console.log(newCount);
       setCounter(newCount);
     }
 
@@ -164,6 +176,7 @@ function App() {
           </option>
           <option value={100}>1/10 Second</option>
         </select>
+        <button onClick={pulsarGrid}>PULSAR TEMPLATE</button>
       </div>
     </div>
   );
