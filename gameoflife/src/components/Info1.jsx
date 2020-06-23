@@ -54,7 +54,7 @@ function Info1(props) {
           stiffness: 100,
         }}
       >
-        Talk About Conway
+        The Rules of the Game
       </motion.h2>
       <motion.p
         variants={item}
@@ -65,10 +65,21 @@ function Info1(props) {
           stiffness: 100,
         }}
       >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Luctus accumsan
-        tortor posuere ac. Lectus vestibulum mattis ullamcorper velit sed
-        ullamcorper morbi. Eu scelerisque felis imperdiet proin fermentum leo.
+        <span>Conway's Game of Life</span> is a cellular automaton designed by
+        John Conway in 1970. The rules of the game are simple. Within a grid
+        contains a number of cells that are destined to come alive or to die
+        based on their neighbors' current states. <br />
+        <p>
+          If a cell is alive and if 2 or 3 neighbors are also alive, then it
+          stays alive. If this isn't true, then it dies. If a cell is dead and
+          has <span>exactly</span> 3 living neighbors, then it comes to life!
+          Otherwise, it stays dead.
+        </p>
+        <p>
+          These conditions can create "living" patterns as the computer
+          continues to check for them. This "zero-player" game is considered{" "}
+          <span>Turing Complete.</span>
+        </p>
       </motion.p>
       <motion.button
         className="turingComplete"

@@ -3,12 +3,6 @@ import "../styling/info.scss";
 import { motion } from "framer-motion";
 
 function Info2(props) {
-  const goToInfo = (event) => {
-    event.preventDefault();
-
-    props.history.push("turing");
-  };
-
   const goToGame = (event) => {
     event.preventDefault();
 
@@ -54,7 +48,7 @@ function Info2(props) {
           stiffness: 100,
         }}
       >
-        Talk About Turing Completeness
+        Turing Completeness
       </motion.h2>
       <motion.p
         variants={item}
@@ -65,10 +59,11 @@ function Info2(props) {
           stiffness: 100,
         }}
       >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Luctus accumsan
-        tortor posuere ac. Lectus vestibulum mattis ullamcorper velit sed
-        ullamcorper morbi. Eu scelerisque felis imperdiet proin fermentum leo.
+        For a process or system to be "Turing Complete" means it should be able
+        to do anything a Turing machine can do. In brief, a Turing Complete
+        system means a system in which a program can be written that will find
+        an answer; that it can be used to solve any computation problem without
+        regard of runtime or memory.
       </motion.p>
       <motion.button
         className="turingComplete"
@@ -79,23 +74,9 @@ function Info2(props) {
           type: "spring",
           stiffness: 100,
         }}
-        onClick={goToInfo}
-      >
-        Turing Completeness
-        <i className="fa fa-arrow-right"></i>
-      </motion.button>
-      <motion.button
-        className="goToGame"
         onClick={goToGame}
-        variants={item}
-        transition={{
-          ease: "easeIn",
-          duration: 3,
-          type: "spring",
-          stiffness: 100,
-        }}
       >
-        Go To Game
+        Try The Game
         <i className="fa fa-arrow-right"></i>
       </motion.button>
     </motion.div>
