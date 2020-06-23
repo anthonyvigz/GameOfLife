@@ -1,12 +1,16 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import "../styling/grid.scss";
 import produce from "immer";
+// import the template presets
 import {
   pulsarTemplate,
   replicatorTemplate,
   cloverTemplate,
 } from "./Templates";
 
+// these operations aid the cells in deciding their states
+// there are 8 possible neighbors, these arrays give the cells
+// and operator to check each neighbor
 const operations = [
   [0, 1],
   [0, -1],
@@ -22,9 +26,11 @@ function App(props) {
   // state for setting the rows and columns
   const [numCols, setCols] = useState(24);
   const [numRows, setRows] = useState(24);
+  // sets the counter for the generations
   const [counter, setCounter] = useState(0);
+  // sets the speed for the process run
   const [speed, setSpeed] = useState(500);
-
+  // sets the initial empty grid
   const [grid, setGrid] = useState(() => {
     const rows = [];
     for (let i = 0; i < numRows; i++) {
@@ -32,9 +38,15 @@ function App(props) {
     }
     return rows;
   });
-
+  // sets the state for whether the render is running or not
   const [running, setRunning] = useState(false);
 
+  // this sets the state for the cell colors
+  const [color, setColor] = useState("white");
+
+  // these are the reference variables for the state values
+  // they allow the running callback function to have access
+  // to changing variables
   const runningRef = useRef();
   runningRef.current = running;
 
@@ -101,7 +113,7 @@ function App(props) {
     });
   };
 
-  // set speed
+  // this function updates the speed based on the current speed
   const upSpeed = (event) => {
     event.preventDefault();
 
@@ -116,6 +128,23 @@ function App(props) {
     }
   };
 
+  // this function updates the color based on the current color
+  const changeColor = (event) => {
+    event.preventDefault();
+
+    if (color === "white") {
+      setColor("pink");
+    } else if (color === "pink") {
+      setColor("lightblue");
+    } else if (color === "lightblue") {
+      setColor("orange");
+    } else {
+      setColor("white");
+    }
+  };
+
+  // this is the callback function that continuously updates the grid
+  // based on the last one
   const runSimulation = useCallback(() => {
     if (!runningRef.current) {
       return;
@@ -195,7 +224,7 @@ function App(props) {
                   style={{
                     width: 15,
                     height: 15,
-                    backgroundColor: grid[i][k] ? "white" : "black",
+                    backgroundColor: grid[i][k] ? color : "black",
                   }}
                 />
               ))
@@ -240,6 +269,13 @@ function App(props) {
               {counter}
             </h2>
             <h4>Generations</h4>
+            <button
+              className="colorButton"
+              onClick={changeColor}
+              style={{ backgroundColor: color }}
+            >
+              Color
+            </button>
           </div>
         </div>
       </div>

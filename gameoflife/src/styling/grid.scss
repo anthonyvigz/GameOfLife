@@ -192,6 +192,24 @@
         margin-top: 100px;
         margin-left: 30px;
 
+        .colorButton {
+          margin-top: 25px;
+          font-size: 1.1em;
+          font-family: "Heebo", sans-serif;
+          padding: 5px 15px;
+          outline: none;
+          cursor: pointer;
+          transition: 0.5s;
+          opacity: 1;
+          border-radius: 3px;
+          border: solid white 1px;
+        }
+
+        .colorButton:hover {
+          transition: 0.5s;
+          opacity: 0.8;
+        }
+
         h2 {
           color: rgb(41, 187, 255);
           text-align: center;
