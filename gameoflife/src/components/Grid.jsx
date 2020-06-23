@@ -146,25 +146,30 @@ function App(props) {
   // this is the callback function that continuously updates the grid
   // based on the last one
   const runSimulation = useCallback(() => {
+    // if not running, stop the sim
     if (!runningRef.current) {
       return;
     }
     const firstGrid = runningGrid.current;
     const count = runningCount.current;
 
+    // sets the next grid based on the current grid
     setGrid((g) => {
       return produce(g, (gridCopy) => {
+        /// goes through the rows and the columns to get a x, y value for each
+        /// cell, applies the operations to each cell to check its neighbots
         for (let i = 0; i < numRows; i++) {
           for (let k = 0; k < numCols; k++) {
             let neighbors = 0;
             operations.forEach(([x, y]) => {
+              /// checks how many neighbors have a value of 1
               const newI = i + x;
               const newK = k + y;
               if (newI >= 0 && newI < numRows && newK >= 0 && newK < numCols) {
                 neighbors += g[newI][newK];
               }
             });
-
+            // checks the amount of neighbors to set next cell state
             if (neighbors < 2 || neighbors > 3) {
               gridCopy[i][k] = 0;
             } else if (g[i][k] === 0 && neighbors === 3) {
@@ -176,6 +181,7 @@ function App(props) {
     });
 
     console.log(runningGrid.current);
+    /// updates the generation count
     if (firstGrid === runningGrid.current) {
       setRunning(!running);
     } else {
@@ -183,7 +189,7 @@ function App(props) {
       setCounter(newCount);
     }
 
-    // simulate
+    // simulate, checks the speed, recursive simulation
     setTimeout(runSimulation, runningSpeed.current);
   }, []);
 
@@ -210,6 +216,7 @@ function App(props) {
               gridTemplateColumns: `repeat(${numCols}, 17px`,
             }}
           >
+            {/* sets the current grid */}
             {grid.map((rows, i) =>
               rows.map((col, k) => (
                 <div
